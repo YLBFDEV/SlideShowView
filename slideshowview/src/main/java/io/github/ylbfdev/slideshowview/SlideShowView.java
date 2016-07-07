@@ -70,7 +70,6 @@ public class SlideShowView extends FrameLayout {
 
         initUI(context);
         if (!(imageUris.size() <= 0)) {
-            System.out.println("XXXXXXXXXXXX");
             setImageUris(imageUris);
         }
 
@@ -96,7 +95,6 @@ public class SlideShowView extends FrameLayout {
 
         for (int i = 0; i < imageuris.size(); i++) {
             imageUris.add(imageuris.get(i));
-            System.out.println("ＹＹＹＹＹＹＹＹＹＹ");
         }
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -111,16 +109,13 @@ public class SlideShowView extends FrameLayout {
             // imageLoaderWraper.displayImage(imageUris.get(i), imageView);
             // System.out.println("JJJJJJ");
             imageViewsList.add(imageView);
-            System.out.println("JJJJJJ55555");
             ImageView viewDot = new ImageView(getContext());
-            System.out.println("JJJJJJ88888");
             if (i == 0) {
                 viewDot.setBackgroundResource(R.drawable.main_dot_white);
             } else {
                 viewDot.setBackgroundResource(R.drawable.main_dot_light);
             }
             // viewDot.setImageResource(R.drawable.dot_white);
-            System.out.println("JJJJJJ9999");
             viewDot.setLayoutParams(lp);
             dotViewsList.add(viewDot);
             mLinearLayout.addView(viewDot);

@@ -1,12 +1,12 @@
 package io.github.ylbfdev.slideshowview.utils;
 
+import android.graphics.Bitmap;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import android.graphics.Bitmap;
 
 /**
  * @author YLBF
