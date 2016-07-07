@@ -25,3 +25,21 @@ proguard/
 
 # Log Files
 *.log
+
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Android Studio project files
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/*/build/
+/captures
