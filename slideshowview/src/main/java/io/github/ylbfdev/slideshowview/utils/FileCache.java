@@ -7,7 +7,7 @@ import java.io.File;
 /**
  * @author YLBF
  * @version 版本号 1.0.0.0
- * @category 类说明 文件缓存工具类
+ * <p>类说明 文件缓存工具类 缓存图片到SD卡缓存目录CacheDir</p>
  */
 public class FileCache {
     private File cacheDir;
@@ -27,7 +27,7 @@ public class FileCache {
     /**
      * 创建文件夹
      *
-     * @return
+     * @return boolean  cacheDir.exists()
      */
     public boolean creatDir() {
         if (!cacheDir.exists()) {

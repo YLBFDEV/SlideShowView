@@ -27,9 +27,11 @@ import io.github.ylbfdev.slideshowview.utils.ImageLoader;
 
 
 /**
- * ViewPager实现的轮播图广告自定义视图； 既支持自动轮播页面也支持手势滑动切换页面,可以动态设置图片的张数
+ * <h2>SlideShowView</h2>
+ * <p>ViewPager实现的轮播图广告自定义视图； 既支持自动轮播页面也支持手势滑动切换页面,可以动态设置图片的张数</p>
  *
  * @author YLBF
+ * @version 版本号 1.0.0.0
  */
 @SuppressLint("HandlerLeak")
 public class SlideShowView extends FrameLayout {
@@ -91,6 +93,10 @@ public class SlideShowView extends FrameLayout {
 
     }
 
+    /**
+     * 设置网络图片url到集合
+     * @param imageuris 网络图片url
+     */
     public void setImageUris(List<String> imageuris) {
 
         for (int i = 0; i < imageuris.size(); i++) {
@@ -126,12 +132,18 @@ public class SlideShowView extends FrameLayout {
         mViewPager.setOnPageChangeListener(new MyPageChangeListener());
     }
 
+    /**
+     * 开始播放
+     */
     private void startPlay() {
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1, 4,
                 TimeUnit.SECONDS);
     }
 
+    /**
+     * 停止播放
+     */
     @SuppressWarnings("unused")
     private void stopPlay() {
         scheduledExecutorService.shutdown();

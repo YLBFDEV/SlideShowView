@@ -1,3 +1,3 @@
 # SlideShowView
 ViewPager实现的轮播图广告自定义视图； 既支持自动轮播页面也支持手势滑动切换页面,可以动态设置图片的张数
-本地缓存目录为SD卡根目录 CacheDir文件夹
+本地缓存目录为SD卡应用缓存目录下的 CacheDir文件夹

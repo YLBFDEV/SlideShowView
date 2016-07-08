@@ -9,9 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
+ * <p>类说明 虚拟缓存工具类</p>
  * @author YLBF
- * 
- * @category 类说明 虚拟缓存工具类
  * @version 修改时间 2015年7月17日下午1:50:07
  * @version 版本号 1.0.0.0
  */

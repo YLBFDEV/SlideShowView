@@ -27,7 +27,8 @@ import io.github.ylbfdev.slideshowview.R;
 /**
  * @author YLBF
  * 
- * @category 类说明
+ * <p>类说明 ImageLoader 多渠道加载图片 如果有必要后期会替换成UIL</p>
+ *
  * @version 修改时间 2015年7月17日下午1:48:04
  * @version 版本号 1.0.0.0
  */

@@ -1,14 +1,21 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+
+group = 'io.github.ylbfdev'
+version = '1.0'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
+    resourcePrefix "slide__"
 
     defaultConfig {
         minSdkVersion 13
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName version
     }
     buildTypes {
         release {
@@ -16,11 +23,118 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        encoding "UTF-8"
+    }
 }
+def siteUrl = "https://github.com/YLBFDEV/SlideShowView/tree/studio"
+def gitUrl = "https://github.com/YLBFDEV/SlideShowView.git"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper paramters
+        pom {
+            project {
+                packaging 'aar'
+
+                //添加项目描述
+                name 'SlideShowView for Android'
+                url siteUrl
+
+                //设置开源证书信息
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                //添加开发者信息
+                developers {
+                    developer {
+                        id 'ylbfdev'
+                        name 'ylbf'
+                        email 'ylbf_dev@qq.com'
+                    }
+                }
+
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:support-v4:23.2.1'
 
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.encoding = "MacRoman"
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+        title "SlideShowView"
+    }
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+//配置上传Bintray相关信息
+bintray {
+    //读取Bintray帐号和密码。
+    //一般的为了保密和安全性，在项目的local.properties文件中添加两行句话即可：
+    //bintray.user=username
+    //bintray.apikey=apikey
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+
+    pkg {
+        repo = "maven"//上传的中央仓库名称
+        name = "SlideShowView"//上传的项目的名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = false  //是否发布
+    }
 }
